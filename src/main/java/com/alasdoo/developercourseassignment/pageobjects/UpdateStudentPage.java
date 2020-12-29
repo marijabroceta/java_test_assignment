@@ -21,13 +21,13 @@ public class UpdateStudentPage extends PageObject{
     @FindBy(name = "bankCardNumber")
     private WebElement bankCardNumber;
 
-    @FindBy(id = "courses")
+    @FindBy(css = "button[data-test-id='courses']")
     private WebElement toggleCourses;
 
-    @FindBy(id = "save")
+    @FindBy(css = "button[data-test-id='save']")
     private WebElement saveStudent;
 
-    @FindBy(id = "delete")
+    @FindBy(css = "button[data-test-id='delete']")
     private WebElement deleteStudent;
 
     public UpdateStudentPage(WebDriver driver) {
@@ -46,22 +46,19 @@ public class UpdateStudentPage extends PageObject{
         this.surname.sendKeys(surname);
     }
 
-    public void enterAccountInfo(String accountName, String email, String bankCardNumber){
-        this.accountName.clear();
-        this.accountName.sendKeys(accountName);
-
+    public void enterEmail(String email){
         this.email.clear();
         this.email.sendKeys(email);
-
-        this.bankCardNumber.clear();
-        this.bankCardNumber.sendKeys(bankCardNumber);
     }
 
     public void clickOnToggleCourses(){
         toggleCourses.click();
+        StudentCoursePage studentCoursePage = new StudentCoursePage(driver);
+        studentCoursePage.isInitialized();
+        studentCoursePage.clickOnCourseToOpenUpdateForm();
     }
 
-    public void clickToSaveStudent(){
+    public void clickToSaveChanges(){
         saveStudent.click();
     }
 

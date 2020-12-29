@@ -21,10 +21,10 @@ public class AddStudentPage extends PageObject{
     @FindBy(name = "bankCardNumber")
     private WebElement bankCardNumber;
 
-    @FindBy(id = "save")
+    @FindBy(css = "button[data-test-id='save']")
     private WebElement saveStudent;
 
-    @FindBy(id = "delete")
+    @FindBy(css = "button[data-test-id='delete']")
     private WebElement deleteStudent;
 
     public AddStudentPage(WebDriver driver) {
@@ -43,7 +43,7 @@ public class AddStudentPage extends PageObject{
         this.surname.sendKeys(surname);
     }
 
-    public void enterAccountInfo(String accountName, String email, String bankCardNumber){
+    public void enterAccountInfo(String accountName, String email, Integer bankCardNumber){
         this.accountName.clear();
         this.accountName.sendKeys(accountName);
 
@@ -51,7 +51,7 @@ public class AddStudentPage extends PageObject{
         this.email.sendKeys(email);
 
         this.bankCardNumber.clear();
-        this.bankCardNumber.sendKeys(bankCardNumber);
+        this.bankCardNumber.sendKeys(Integer.toString(bankCardNumber));
     }
 
     public void clickToSaveStudent(){
